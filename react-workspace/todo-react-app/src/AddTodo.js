@@ -23,7 +23,7 @@ class AddTodo extends React.Component {
   };
 
   enterKeyEventHandler = (e) => {
-    if (e.key == "Enter") {
+    if (e.key === "Enter") {
       this.onButtonClick();
     }
   };
