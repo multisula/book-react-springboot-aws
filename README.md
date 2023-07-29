@@ -37,7 +37,7 @@ Unable to load class named [io.jsonwebtoken.impl.DefaultJwtBuilder] from the thr
 All heuristics have been exhausted.
 Class could not be found.
 Have you remembered to include the jjwt-impl.jar in your runtime classpath?
-  - 해결: 기존에 jjwt 가 최신화되면서 jjwt-api랑 jjwt-impl 로 쪼개졌는데 api만 가져다 써서 에러발생
+  - 해결: 기존에 jjwt 가 최신화되면서 jjwt-api랑 jjwt-impl 로 쪼개졌는데 api만 가져다 써서 에러발생<br>
     라이브러리 끌어다쓰니까 해결됨 그러나 다음 문제 발생
 
 - io.jsonwebtoken.security.WeakKeyException:
@@ -50,8 +50,8 @@ See https://tools.ietf.org/html/rfc7518#section-3.2 for more information.
 - io.jsonwebtoken.impl.lang.UnavailableImplementationException:
 Unable to find an implementation for interface io.jsonwebtoken.io.Serializer using java.util.ServiceLoader.
 Ensure you include a backing implementation .jar in the classpath, for example jjwt-impl.jar, or your own .jar for custom implementations.
-  - 해결: https://github.com/jwtk/jjwt/issues/573 참고
-    // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-jackson
-    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
+  - 해결: https://github.com/jwtk/jjwt/issues/573 참고<br>
+    // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-jackson<br>
+    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'<br>
     라이브러리 추가함. 에러가 jjwt-impl.jar 로 misleading 하고있지만 실제로는 Serialize 가 안되서 발생한 것으로 보임
 
