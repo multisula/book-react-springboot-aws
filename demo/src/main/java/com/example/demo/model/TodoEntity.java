@@ -1,14 +1,15 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Builder
 @NoArgsConstructor
@@ -19,7 +20,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class TodoEntity {
   @Id
   @GeneratedValue(generator = "system-uuid")
-  @GenericGenerator(name="system-uuid", strategy = "uuid")
+  @GenericGenerator(name = "system-uuid", strategy = "uuid")
   private String id;
   private String userId;
   private String title;
