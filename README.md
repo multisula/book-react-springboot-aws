@@ -25,6 +25,8 @@
 ### 서비스 통합
 - CORS
   - 프론트쪽에서 백엔드 서버에 api 요청을 보내면 나오는 에러
+  - Security 에서는 버전 다르면 호환 안되는 부분이 많아서 인터넷 검색해봄
+    - 그런데 그냥 책에 있는대로 해도 됐었는듯
   - 스프링 2.5 버전으로 작성된 책에서는 WebMvcConfigurer를 implements해서  WebMvcConfig를 적용
     - 나는 스프링 3.1 버전이라 spring boot 3 CORS 검색하여 spring 홈페이지에서 나오는 @Bean 등록방법 사용. 정상적 동작.
 - fetch() 함수를 이용해서 간단하게 api 요청할 수 있다.
