@@ -33,7 +33,7 @@
   - 다시 그걸 사용하는 call(api, url, request) / return json 함수를 만드니 더욱 간단했다.
   - 자바스크립트는 프론트엔드 개발자들이 아름답게 쓰는 듯 하다.
 ## 4장 인증 백엔드 통합
-#### JWT 토큰 설정에서 문제발생
+### JWT 토큰 설정에서 문제발생
 - io.jsonwebtoken.lang.UnknownClassException:
 Unable to load class named [io.jsonwebtoken.impl.DefaultJwtBuilder] from the thread context, current, or system/application ClassLoaders.
 All heuristics have been exhausted.
@@ -57,3 +57,9 @@ Ensure you include a backing implementation .jar in the classpath, for example j
     runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'<br>
     라이브러리 추가함. 에러가 jjwt-impl.jar 로 misleading 하고있지만 실제로는 Serialize 가 안되서 발생한 것으로 보임
 
+### http. configure에서 문제 발생
+Spring Security 6.1 이후로는 Lambda DSL 방식을 채택<br>
+기존 처럼 마구잡이로 http.~~~().and().~~~().and() 사용하는 것을 지양하고<br>
+흐름은 명확하게 나타내도록 한다고 한다.<br>
+5.7에서 바꾸고 6.0에서 바꼈는데 6.1에서 또 바뀌네...<br>
+한땀한땀 전체를 보려니 너무 많다는 생각이 들어서 당장 필요한 부분만 챙겨서 지나간다.
