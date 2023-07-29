@@ -30,3 +30,28 @@
 - fetch() 함수를 이용해서 간단하게 api 요청할 수 있다.
   - 다시 그걸 사용하는 call(api, url, request) / return json 함수를 만드니 더욱 간단했다.
   - 자바스크립트는 프론트엔드 개발자들이 아름답게 쓰는 듯 하다.
+## 4장 인증 백엔드 통합
+#### JWT 토큰 설정에서 문제발생
+- io.jsonwebtoken.lang.UnknownClassException:
+Unable to load class named [io.jsonwebtoken.impl.DefaultJwtBuilder] from the thread context, current, or system/application ClassLoaders.
+All heuristics have been exhausted.
+Class could not be found.
+Have you remembered to include the jjwt-impl.jar in your runtime classpath?
+  - 해결: 기존에 jjwt 가 최신화되면서 jjwt-api랑 jjwt-impl 로 쪼개졌는데 api만 가져다 써서 에러발생
+    라이브러리 끌어다쓰니까 해결됨 그러나 다음 문제 발생
+
+- io.jsonwebtoken.security.WeakKeyException:
+The signing key's size is 96 bits which is not secure enough for the HS512 algorithm.
+The JWT JWA Specification (RFC 7518, Section 3.2) states that keys used with HS512 MUST have a size >= 512 bits (the key size must be greater than or equal to the hash output size).
+Consider using the io.jsonwebtoken.security.Keys class's 'secretKeyFor(SignatureAlgorithm.HS512)' method to create a key guaranteed to be secure enough for HS512.
+See https://tools.ietf.org/html/rfc7518#section-3.2 for more information.
+  - 해결: SECRET 키가 너무 짧아서 뜬 오류 length가 512이상 돼야 한다. 그러나 또다른 문제
+
+- io.jsonwebtoken.impl.lang.UnavailableImplementationException:
+Unable to find an implementation for interface io.jsonwebtoken.io.Serializer using java.util.ServiceLoader.
+Ensure you include a backing implementation .jar in the classpath, for example jjwt-impl.jar, or your own .jar for custom implementations.
+  - 해결: https://github.com/jwtk/jjwt/issues/573 참고
+    // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-jackson
+    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
+    라이브러리 추가함. 에러가 jjwt-impl.jar 로 misleading 하고있지만 실제로는 Serialize 가 안되서 발생한 것으로 보임
+
